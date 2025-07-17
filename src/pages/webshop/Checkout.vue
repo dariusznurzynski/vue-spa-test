@@ -18,9 +18,9 @@
 </template>
 <script setup>
 import { useRouter } from 'vue-router';
-import ClientForm from '@/components/ClientForm.vue';
-import Payment from '@/components/Payment.vue';
-import SummaryTest from '@/components/Summary.vue';
+import ClientForm from '@/components/webshop/ClientForm.vue';
+import Payment from '@/components/webshop/Payment.vue';
+import SummaryTest from '@/components/webshop/Summary.vue';
 import bottomNav from '@/components/bottomNav.vue';
 
 const router = useRouter()

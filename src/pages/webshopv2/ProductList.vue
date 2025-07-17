@@ -19,10 +19,10 @@
   <shopping-cart-manipulation />
 </template>
 <script setup>
-  import ProductItem from '@/components/webshop/ProductItem.vue'
+  import ProductItem from '@/components/ProductItem.vue'
   import { useProductsStore } from '@/stores/products'
   import { useShoppingCartStore } from '@/stores/shoppingCart'
-  import ShoppingCartManipulation from '@/components/webshop/ShoppingCartManipulation.vue'
+  import ShoppingCartManipulation from '@/components/ShoppingCartManipulation.vue'
 
   const productsStore = useProductsStore()
   const shoppingCartStore = useShoppingCartStore()

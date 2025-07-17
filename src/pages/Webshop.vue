@@ -3,5 +3,5 @@
   <router-view />
 </template>
 <script setup>
-  import WebshopHeader from '../components/WebshopHeader.vue';
+  import WebshopHeader from '@/components/webshop/WebshopHeader.vue';
 </script>

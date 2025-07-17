@@ -16,8 +16,8 @@
   />
 </template>
 <script setup>
-  import OrderLink from '@/components/OrderLink.vue';
-  import ReturnOrderDialog from '@/components/ReturnOrderDialog.vue';
+  import OrderLink from '@/components/webshop/OrderLink.vue';
+  import ReturnOrderDialog from '@/components/webshop/ReturnOrderDialog.vue';
   import { useRouter } from 'vue-router'
   import { ref } from 'vue'
 

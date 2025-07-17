@@ -72,14 +72,14 @@
   <bottom-nav :links="links" />
 </template>
 <script setup>
-import BottomNav from '../../components/BottomNav.vue';
+import BottomNav from '@/components/BottomNav.vue';
 const links = [
   {
     routeName: 'order-payment',
     text: 'Go Back to Payment Complete'
   },
   {
-    routeName: 'profile',
+    routeName: 'webshop-profile',
     text: 'Go to profile'
   }
 ]

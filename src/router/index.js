@@ -7,7 +7,7 @@ import PathManipulation from '../pages/PathManipulation.vue';
 import Webshop from '../pages/Webshop.vue';
 import Profile from '../pages/webshop/Profile.vue';
 import ProductList from '../pages/webshop/ProductList.vue';
-import ShoppingCart from '../components/ShoppingCart.vue';
+import ShoppingCart from '../components/webshop/ShoppingCart.vue';
 import Checkout from '../pages/webshop/Checkout.vue';
 import OrderReview from '../pages/webshop/OrderReview.vue';
 import Payment from '../pages/webshop/Payment.vue';
@@ -80,6 +80,64 @@ const routes = [
         component: EmptyProductAttrs,
         name: 'empty-product-attrs'
       }
+    ]
+  },
+  { 
+    path: '/webshop-v2',
+    component: Webshop,
+    name: 'webshop-v2',
+    redirect: { name: 'webshop-v2-home' },
+    children: [
+      {
+        path: '',
+        component: ProductList,
+        name: 'webshop-home'
+      },
+      // {
+      //   path: 'profile',
+      //   component: Profile,
+      //   name: 'webshop-profile'
+      // },
+      // {
+      //   path: 'shopping-cart',
+      //   component: ShoppingCart,
+      //   name: 'shopping-cart'
+      // },
+      // {
+      //   path: 'checkout',
+      //   component: Checkout,
+      //   name: 'webshop-checkout'
+      // },
+      // {
+      //   path: 'order-review',
+      //   component: OrderReview,
+      //   name: 'order-review'
+      // },
+      // {
+      //   path: 'order-payment',
+      //   component: Payment,
+      //   name: 'order-payment'
+      // },
+      // {
+      //   path: 'payment-complete',
+      //   component: PaymentComplete,
+      //   name: 'payment-complete'
+      // },
+      // {
+      //   path: 'order-confirmation',
+      //   component: OrderConfirmation,
+      //   name: 'order-confirmation'
+      // },
+      // {
+      //   path: 'product/:id',
+      //   component: Product,
+      //   name: 'product'
+      // },
+      // {
+      //   path: 'empty-product-attrs',
+      //   component: EmptyProductAttrs,
+      //   name: 'empty-product-attrs'
+      // }
     ]
   },
 ];

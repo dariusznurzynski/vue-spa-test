@@ -15,7 +15,7 @@
 <script setup>
   import { ref } from 'vue' 
 import { useRouter } from 'vue-router';
-  import { useProductsStore } from "../stores/products";
+  import { useProductsStore } from "@/stores/products";
   import ShoppingCartItem from "./ShoppingCartItem.vue";
   import { useShoppingCartStore } from '@/stores/shoppingCart'
 

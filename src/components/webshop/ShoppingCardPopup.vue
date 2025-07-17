@@ -16,7 +16,7 @@
 </template>
 <script setup>
 import { useRouter } from "vue-router"
-import shoppingCartItemSmall from "@/components/shoppingCartItemSmall.vue"
+import shoppingCartItemSmall from "@/components/webshop/shoppingCartItemSmall.vue"
 import { useShoppingCartStore } from '@/stores/shoppingCart'
 
   const emit = defineEmits(['hide'])
