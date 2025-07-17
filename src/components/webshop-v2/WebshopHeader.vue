@@ -1,8 +1,8 @@
 <template>
   <nav>
-    <h3>Webshop</h3>
+    <h3>Webshop v2</h3>
     <div class="side-left-panel">
-      <button
+      <!-- <button
         @click="goToEmptyAttrs"
       >
         Empty attrs
@@ -26,12 +26,7 @@
         @click="navigateToProfile"
       >
         Profile
-      </button>
-      <shopping-card-popup 
-        v-if="isShoppingCardVisibleVif"
-        class="shopping-cart-v-if"
-        @hide="hidePopupVif"
-      />
+      </button> -->
       <shopping-card-popup
         v-show="isShoppingCardVisibleVshow"
         class="shopping-cart-v-show"
@@ -41,46 +36,46 @@
   </nav>
 </template>
 <script setup>
-  import { ref } from 'vue'
-  import { useRouter } from 'vue-router'
-  import ShoppingCardPopup from './ShoppingCardPopup.vue'
+  // import { ref } from 'vue'
+  // import { useRouter } from 'vue-router'
+  // import ShoppingCardPopup from './ShoppingCardPopup.vue'
 
-  const router = useRouter()
+  // const router = useRouter()
 
-  const isShoppingCardVisibleVif = ref(false)
-  const isShoppingCardVisibleVshow = ref(false)
+  // const isShoppingCardVisibleVif = ref(false)
+  // const isShoppingCardVisibleVshow = ref(false)
 
-  const changeVisibilityForShoppingCartVif = () => {
-    isShoppingCardVisibleVif.value = !isShoppingCardVisibleVif.value
-  }
+  // const changeVisibilityForShoppingCartVif = () => {
+  //   isShoppingCardVisibleVif.value = !isShoppingCardVisibleVif.value
+  // }
 
-  const changeVisibilityForShoppingCartVshow = () => {
-    isShoppingCardVisibleVshow.value = !isShoppingCardVisibleVshow.value
-  }
+  // const changeVisibilityForShoppingCartVshow = () => {
+  //   isShoppingCardVisibleVshow.value = !isShoppingCardVisibleVshow.value
+  // }
 
-  const hidePopupVif = () => {
-    isShoppingCardVisibleVif.value = false
-  }
+  // const hidePopupVif = () => {
+  //   isShoppingCardVisibleVif.value = false
+  // }
 
-  const hidePopupVshow = () => {
-    isShoppingCardVisibleVshow.value = false
-  }
+  // const hidePopupVshow = () => {
+  //   isShoppingCardVisibleVshow.value = false
+  // }
 
-  const navigateToProfile = () => {
-    router.push({ name: 'webshop-profile' })
-  }
+  // const navigateToProfile = () => {
+  //   router.push({ name: 'webshop-profile' })
+  // }
 
-  const goToProductList = () => {
-    router.push({ name: 'webshop-home'})
-  }
+  // const goToProductList = () => {
+  //   router.push({ name: 'webshop-home'})
+  // }
 
-  const goToEmptyAttrs = () => {
-    router.push({name: 'empty-product-attrs'})
-  }
+  // const goToEmptyAttrs = () => {
+  //   router.push({name: 'empty-product-attrs'})
+  // }
 </script>
 <style scoped>
   nav {
-    background: blue;
+    background: #0A8800;
     display: flex;
     justify-content: space-between;
     align-items: center;

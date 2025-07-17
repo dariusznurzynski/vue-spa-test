@@ -8,8 +8,9 @@
     <router-link :to="{name: 'asset-print'}">Asset Print</router-link> |
     <router-link :to="{name: 'teaser-tracking'}">Teaser Tracking</router-link> |
     <router-link :to="{name: 'path-manipulation'}">Path Manipulation</router-link> |
+    <router-link :to="{name: 'course-start'}">Course tracking</router-link> |
     <router-link :to="{name: 'webshop'}">Webshop</router-link> |
-    <router-link :to="{name: 'course-start'}">Course tracking</router-link>
+    <router-link :to="{name: 'webshop-v2'}">Webshop V2</router-link>
   </nav>
   <br>
   <b>Page content</b>

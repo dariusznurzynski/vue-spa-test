@@ -17,6 +17,9 @@ import Product from '../pages/webshop/Product.vue';
 import EmptyProductAttrs from '../pages/webshop/EmptyProductAttrs.vue'
 import CourseStart from '../pages/CourseStart.vue'
 
+import WebshopV2 from '@/pages/WebshopV2.vue'
+import ProductListVueV2 from '../pages/webshop-v2/ProductList.vue';
+
 const routes = [
   { path: '/', component: Home, name: 'home' },
   { path: '/asset-management', component: AssetManagement, name: 'asset-management' },
@@ -84,14 +87,14 @@ const routes = [
   },
   { 
     path: '/webshop-v2',
-    component: Webshop,
+    component: WebshopV2,
     name: 'webshop-v2',
     redirect: { name: 'webshop-v2-home' },
     children: [
       {
         path: '',
-        component: ProductList,
-        name: 'webshop-home'
+        component: ProductListVueV2,
+        name: 'webshop-v2-home'
       },
       // {
       //   path: 'profile',
