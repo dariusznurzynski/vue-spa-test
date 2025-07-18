@@ -27,31 +27,30 @@
       >
         Profile
       </button> -->
+      <cart-button 
+        @mouseenter="changeVisibilityForShoppingCartVIf(true)"
+      />
       <shopping-card-popup
-        v-show="isShoppingCardVisibleVshow"
-        class="shopping-cart-v-show"
-        @hide="hidePopupVshow"
+        v-if="isShoppingCardVisibleVif"
+        class="shopping-cart-v-if"
+        @mouseleave="changeVisibilityForShoppingCartVIf(false)"
       />
     </div>
   </nav>
 </template>
 <script setup>
-  // import { ref } from 'vue'
+  import CartButton from '@/components/webshop-v2/CartButton.vue'
+  import { ref } from 'vue'
   // import { useRouter } from 'vue-router'
-  // import ShoppingCardPopup from './ShoppingCardPopup.vue'
+  import ShoppingCardPopup from '@/components/webshop-v2/ShoppingCardPopup.vue'
 
   // const router = useRouter()
 
-  // const isShoppingCardVisibleVif = ref(false)
-  // const isShoppingCardVisibleVshow = ref(false)
+  const isShoppingCardVisibleVif = ref(false)
 
-  // const changeVisibilityForShoppingCartVif = () => {
-  //   isShoppingCardVisibleVif.value = !isShoppingCardVisibleVif.value
-  // }
-
-  // const changeVisibilityForShoppingCartVshow = () => {
-  //   isShoppingCardVisibleVshow.value = !isShoppingCardVisibleVshow.value
-  // }
+  const changeVisibilityForShoppingCartVIf = (visibility) => {
+    isShoppingCardVisibleVif.value = visibility
+  }
 
   // const hidePopupVif = () => {
   //   isShoppingCardVisibleVif.value = false
@@ -101,9 +100,6 @@
 
   .shopping-cart-popup {
     position: absolute;
-    background: white;
-    border: 1px solid black;
-    padding: 10px 15px;
     top: 25px;
   }
 
@@ -112,6 +108,6 @@
   }
   
   .shopping-cart-v-if {
-    left: 250px;
+    right: 0px;
   }
 </style>

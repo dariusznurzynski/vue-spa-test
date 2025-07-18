@@ -3,6 +3,7 @@
     :data-it-product-id="product.id"
     :data-it-product-category="product.cat"
     :data-it-product-stock-status="product.stockStatus"
+    @click="goToProduct(product.id)"
   >
     <img 
       class="product-img"
@@ -10,13 +11,11 @@
     />
     <p class="product-name">{{ product.name }}</p>
     <p>{{ product.shortDesc }}</p>
-    <!-- <div class="actions">
-      <button data-it-cart-addition class="add-to-cart" @click="addToCart(product)">Add to cart</button>
-      <button @click="goToProduct(product.id)">Show product</button>
-    </div> -->
     <div class="bottom-panel">
       <span class="product-price">{{ product.price}} {{ product.currency }}</span>
-      <add-to-cart-button/>
+      <add-to-cart-button
+        @click.stop.prevent="addToCart(product)"
+      />
     </div>
   </div>
 </template>

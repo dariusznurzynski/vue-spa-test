@@ -12,12 +12,13 @@
 <script setup>
   import ProductItem from '@/components/webshop-v2/ProductItem.vue'
   import { useProductsStore } from '@/stores/productsV2'
-  import { useShoppingCartStore } from '@/stores/shoppingCart'
+  import { useShoppingCartStore } from '@/stores/shoppingCartV2'
 
   const productsStore = useProductsStore()
   const shoppingCartStore = useShoppingCartStore()
 
   const addToShoppingCart = (product) => {
+    console.log('adding product')
     shoppingCartStore.add(product)
   }
 
