@@ -6,7 +6,7 @@
   >
     <img
       class="product-img"
-      :src="product.img"
+      :src="useBaseUrl(product.img)"
     />
     <span>{{ product.quantity }}x {{ product.name }}</span>
     <span>{{ product.quantity * product.price}} {{ product.currency }}</span>
@@ -18,6 +18,7 @@
 </template>
 <script setup>
 import TrashButton from '@/components/webshop-v2/TrashButton.vue'
+import useBaseUrl from '@/composables/useBaseUrl'
 
 const props = defineProps({
   product: {

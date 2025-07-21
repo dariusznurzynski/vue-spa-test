@@ -7,15 +7,19 @@ export const useShoppingCartStore = defineStore('shoppingCartV2', {
     }
   },
   actions: {
-    add(product) {
+    add(product, amount = 1) {
+      console.log('add to Cart')
+      console.log(product)
       const index = this.products.findIndex((item) => item.id === product.id)
       if (index === -1) {
-        product.quantity = 1
-        this.products.push(product)
+        product.quantity = amount
+        this.products.push({...product})
       }
       else {
-        product.quantity++
+        this.products[index].quantity += amount
       }
+
+      console.log('addProduct', this.products)
     },
     remove(id) {
       const index = this.products.findIndex(item => item.id === id)

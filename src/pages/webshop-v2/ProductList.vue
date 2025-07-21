@@ -6,6 +6,7 @@
       :key="product.id"
       :product="product"
       @add-to-cart="addToShoppingCart"
+      @click="navigateToProduct(product.id)"
     />
   </div>
 </template>
@@ -13,9 +14,11 @@
   import ProductItem from '@/components/webshop-v2/ProductItem.vue'
   import { useProductsStore } from '@/stores/productsV2'
   import { useShoppingCartStore } from '@/stores/shoppingCartV2'
+  import { useRouter } from 'vue-router'
 
   const productsStore = useProductsStore()
   const shoppingCartStore = useShoppingCartStore()
+  const router = useRouter()
 
   const addToShoppingCart = (product) => {
     console.log('adding product')
@@ -26,6 +29,13 @@
     for (let product of productsStore.products) {
       shoppingCartStore.add(product)
     }
+  }
+
+  const navigateToProduct = (id) => {
+    router.push({
+      name: 'product-v2',
+      params: { id }
+    })
   }
 
 </script>

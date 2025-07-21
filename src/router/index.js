@@ -18,7 +18,8 @@ import EmptyProductAttrs from '../pages/webshop/EmptyProductAttrs.vue'
 import CourseStart from '../pages/CourseStart.vue'
 
 import WebshopV2 from '@/pages/WebshopV2.vue'
-import ProductListVueV2 from '../pages/webshop-v2/ProductList.vue';
+import ProductListVueV2 from '@/pages/webshop-v2/ProductList.vue';
+import ProductV2 from '@/pages/webshop-v2/Product.vue'
 
 const routes = [
   { path: '/', component: Home, name: 'home' },
@@ -131,11 +132,11 @@ const routes = [
       //   component: OrderConfirmation,
       //   name: 'order-confirmation'
       // },
-      // {
-      //   path: 'product/:id',
-      //   component: Product,
-      //   name: 'product'
-      // },
+      {
+        path: 'product/:id',
+        component: ProductV2,
+        name: 'product-v2'
+      },
       // {
       //   path: 'empty-product-attrs',
       //   component: EmptyProductAttrs,

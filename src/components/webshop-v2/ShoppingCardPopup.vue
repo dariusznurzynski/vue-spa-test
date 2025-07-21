@@ -19,7 +19,8 @@
 import { useRouter } from "vue-router"
 import shoppingCartItemSmall from "@/components/webshop-v2/shoppingCartItemSmall.vue"
 import { useShoppingCartStore } from '@/stores/shoppingCartV2'
-import { computed } from 'vue' 
+import { computed } from 'vue'
+
   const router = useRouter()
   const shoppingCartStore = useShoppingCartStore()
 
