@@ -10,8 +10,8 @@
       <p v-if="isCartEmpty">Cart is empty</p>
     </div>
     <div class="links" v-if="!isCartEmpty">
-      <router-link class="button-link" :to="{ name: 'shopping-cart'}">View cart</router-link>
-      <router-link class="button-link" :to="{ name: 'webshop-checkout'}">Checkout</router-link>
+      <router-link class="button-link" :to="{ name: 'shopping-cart-v2'}">View cart</router-link>
+      <router-link class="button-link" :to="{ name: 'webshop-v2-checkout-and-order-review-v2'}" data-it-cart-checkout="">Checkout</router-link>
     </div>
   </div>
 </template>

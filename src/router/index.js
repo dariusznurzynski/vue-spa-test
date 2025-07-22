@@ -20,7 +20,9 @@ import CourseStart from '../pages/CourseStart.vue'
 import WebshopV2 from '@/pages/WebshopV2.vue'
 import ProductListVueV2 from '@/pages/webshop-v2/ProductList.vue';
 import ProductV2 from '@/pages/webshop-v2/Product.vue'
-
+import ShoppingCartV2 from '@/pages/webshop-v2/ShoppingCart.vue'
+import CheckoutAndOrderReviewV2 from '@/pages/webshop-v2/CheckoutAndOrderReview.vue'
+ 
 const routes = [
   { path: '/', component: Home, name: 'home' },
   { path: '/asset-management', component: AssetManagement, name: 'asset-management' },
@@ -102,16 +104,16 @@ const routes = [
       //   component: Profile,
       //   name: 'webshop-profile'
       // },
-      // {
-      //   path: 'shopping-cart',
-      //   component: ShoppingCart,
-      //   name: 'shopping-cart'
-      // },
-      // {
-      //   path: 'checkout',
-      //   component: Checkout,
-      //   name: 'webshop-checkout'
-      // },
+      {
+        path: 'shopping-cart',
+        component: ShoppingCartV2,
+        name: 'shopping-cart-v2'
+      },
+      {
+        path: 'checkout-and-order-review-together',
+        component: CheckoutAndOrderReviewV2,
+        name: 'webshop-v2-checkout-and-order-review-v2'
+      },
       // {
       //   path: 'order-review',
       //   component: OrderReview,

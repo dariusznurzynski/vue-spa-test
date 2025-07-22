@@ -11,6 +11,7 @@
     <span>{{ product.quantity }}x {{ product.name }}</span>
     <span>{{ product.quantity * product.price}} {{ product.currency }}</span>
     <trash-button
+      v-if="!hideRemoveBtn"
       @click="removeItem"
       data-it-cart-removal
     />
@@ -24,6 +25,10 @@ const props = defineProps({
   product: {
     type: Object,
     required: true,
+  },
+  hideRemoveBtn: {
+    type: Boolean,
+    default: false,
   }
 })
 

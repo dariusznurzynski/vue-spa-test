@@ -10,7 +10,7 @@
         <div class="product-actions">
           <p class="price">{{ product.price }} {{ product.currency }}</p>
           <div class="add-to-cart-section">
-            <amount-changer @increase="increase" @decrease="decrease"/>
+            <amount-changer :amount="amount" @increase="increase" @decrease="decrease"/>
             <button class="add-to-cart-btn" data-it-cart-addition="" @click="addToCart">Add to cart</button>
           </div>
         </div>
@@ -33,23 +33,23 @@ const id = route.params.id;
 const productsStore = useProductsStore();
 const product = ref(null);
 const shoppingCartStore = useShoppingCartStore()
-let amount = 1
+const amount = ref(1)
 
 setTimeout(() => {
   product.value = productsStore.getProductById(id);
 }, 1500);
 
 const increase = () => {
-	amount = amount + 1
+	amount.value = amount.value + 1
 }
 
 const decrease = () => {
-	amount = amount - 1
+	amount.value = amount.value - 1
 }
 
 const addToCart = () => {
-	console.log('amount', amount)
-	shoppingCartStore.add(product.value, amount)
+	shoppingCartStore.add(product.value, amount.value)
+	amount.value = 1
 }
 </script>
 <style scoped>

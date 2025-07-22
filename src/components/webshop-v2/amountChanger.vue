@@ -10,24 +10,25 @@
 
   const emit = defineEmits(['decrease', 'increase'])
   const props = defineProps({
+    amount: {
+      type: Number,
+      default: 1
+    },
     min: {
       type: Number, 
       default: 1
     }
   })
-  const amount = ref(1)
 
   const decrease = () => {
-    if (amount.value === props.min) {
+    if (props.amount === props.min) {
       return
     } 
-    amount.value = amount.value + 1
-    emit('decrease', amount)
+    emit('decrease')
   }
 
   const increase = () => {
-    amount.value = amount.value + 1
-    emit('increase', amount)
+    emit('increase')
   }
 </script>
 <style>

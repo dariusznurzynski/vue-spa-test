@@ -27,6 +27,16 @@ export const useShoppingCartStore = defineStore('shoppingCartV2', {
         this.products.splice(index, 1)
       }
     },
+    decrease(id) {
+      const index = this.products.findIndex(item => item.id === id)
+      if (index > -1) {
+        this.products[index].quantity -= 1
+
+        if (this.products[index].quantity === 0) {
+          this.remove(id)
+        }
+      }
+    },
     update(index, data) {
       console.log('index', index)
       if (index >= 0 && index < this.products.length) {
