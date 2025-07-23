@@ -14,8 +14,15 @@
             :disabled="loading"
           />
           <div class="buttons">
-            <button @click="submit" :disabled="loading || blikCode.length !== 6">Confirm</button>
-            <button @click="close" class="cancel" :disabled="loading">Cancel</button>
+            <button
+              @click="submit"
+              :disabled="loading || blikCode.length !== 6"
+            >
+              Confirm
+            </button>
+            <button @click="close" class="cancel" :disabled="loading">
+              Cancel
+            </button>
           </div>
         </template>
 
@@ -33,38 +40,40 @@
 </template>
 
 <script setup>
-import { ref, watch } from 'vue';
-import { useRouter } from 'vue-router';
-import LoadingSpinner from './LoadingSpinner.vue';
-import AcceptedIcon from './AcceptedIcon.vue'
+import { ref, watch } from "vue";
+import { useRouter } from "vue-router";
+import LoadingSpinner from "./LoadingSpinner.vue";
+import AcceptedIcon from "./AcceptedIcon.vue";
+import { useShoppingCartStore } from "@/stores/shoppingCartV2";
 
 const props = defineProps({
   visible: Boolean,
 });
 
-const emit = defineEmits(['close']);
+const emit = defineEmits(["close"]);
 
-const blikCode = ref('123456');
-const stage = ref('input'); // 'input' | 'loading' | 'accepted'
+const blikCode = ref("123456");
+const stage = ref("input"); // 'input' | 'loading' | 'accepted'
 const loading = ref(false);
 
 const router = useRouter();
 
 function close() {
   if (loading.value) return; // prevent close during loading
-  stage.value = 'input';
-  blikCode.value = '';
-  emit('close');
+  stage.value = "input";
+  blikCode.value = "";
+  emit("close");
 }
 
 function submit() {
   if (blikCode.value.length !== 6) return;
 
-  stage.value = 'loading';
+  stage.value = "loading";
   loading.value = true;
 
   setTimeout(() => {
-    stage.value = 'accepted';
+    stage.value = "accepted";
+    handlePaymentComplete()
 
     setTimeout(() => {
       loading.value = false;
@@ -74,8 +83,33 @@ function submit() {
 }
 
 function navigateToOrderConfirmation() {
-  router.push('/order-confirmation');
+  router.push("/order-confirmation");
   close();
+}
+
+function handlePaymentComplete() {
+  if (WSC.modules.instatag) {
+    let event = WSC.modules.instatag.createEvent("event91");
+
+    // Payment method
+    event.getEvar("eVar71").value = "blik";
+    // payment amount
+    event.getEvar("eVar111").value = productsTotal.value;
+
+    event.getEvar("eVarOrderProductId").value = shoppingCartStore.products
+      .map((product) => product.id)
+      .join(",");
+    event.getEvar("eVarOrderProductCategory").value = shoppingCartStore.products
+      .map((product) => product.cat)
+      .join(",");
+    event.getEvar("eVarTransactionProductStockStatus").value =
+      shoppingCartStore.products
+        .map((product) => product.stockStatus)
+        .join(",");
+
+    // send it
+    event.fire();
+  }
 }
 </script>
 

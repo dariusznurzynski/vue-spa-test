@@ -23,7 +23,7 @@
       </div>
       <div class="card">
         <h2>Items</h2>
-        <div class="items-list">
+        <div class="items-list" data-it-checkout-page='' data-it-review-page=''>
           <shopping-cart-item-small
             v-for="product in shoppingCartStore.products"
             :key="product.id"
@@ -39,7 +39,9 @@
         <p><span>Products: </span> {{ productsTotal }} zl</p>
         <p><span>Delivery: </span> 00,00 zl</p>
         <p><span>Total: </span> {{ productsTotal }} zl</p>
-        <button class="payment-button" @click="startPayment">Pay by {{ paymentMethod }}</button>
+        <button class="payment-button" @click="startPayment">
+          Pay by {{ paymentMethod }}
+        </button>
       </div>
       <div class="card">
         <h2>Payment method</h2>
@@ -76,7 +78,7 @@
       </div>
     </div>
   </div>
-  <blik-popup :visible="isBlikPopupVisible" @close="closeBlikPopup"/>
+  <blik-popup :visible="isBlikPopupVisible" @close="closeBlikPopup" />
 </template>
 <script setup>
 import { useRouter } from "vue-router";
@@ -90,7 +92,7 @@ const shoppingCartStore = useShoppingCartStore();
 
 const paymentMethod = ref("BLIK");
 
-const isBlikPopupVisible = ref(false)
+const isBlikPopupVisible = ref(false);
 
 const productsTotal = computed(() => {
   let total = 0;
@@ -113,15 +115,97 @@ const goToReview = () => {
   });
 };
 
-const startPayment = () => {
-  if (paymentMethod.value === 'BLIK') {
-    isBlikPopupVisible.value = true
+const handlePaymentCompleteByGooglePay = () => {
+  if (WSC.modules.instatag) {
+    let event = WSC.modules.instatag.createEvent("event92");
+
+    // Payment method
+    event.getEvar("eVar71").value = "google_pay";
+    // payment amount
+    event.getEvar("eVar111").value = productsTotal.value;
+
+    event.getEvar("eVarOrderProductId").value = shoppingCartStore.products
+      .map((product) => product.id)
+      .join(",");
+    event.getEvar("eVarOrderProductCategory").value = shoppingCartStore.products
+      .map((product) => product.cat)
+      .join(",");
+    event.getEvar("eVarTransactionProductStockStatus").value =
+      shoppingCartStore.products
+        .map((product) => product.stockStatus)
+        .join(",");
+
+    // send it
+    event.fire();
+  }
+};
+
+const startPaymentByInstatag = (paymentType) => {
+    if (WSC.modules.instatag) {
+    let event = WSC.modules.instatag.createEvent("event91");
+
+    // Payment method
+    event.getEvar("eVar71").value = paymentType;
+    // payment amount
+    event.getEvar("eVar111").value = productsTotal.value;
+
+    event.getEvar("eVarOrderProductId").value = shoppingCartStore.products
+      .map((product) => product.id)
+      .join(",");
+    event.getEvar("eVarOrderProductCategory").value = shoppingCartStore.products
+      .map((product) => product.cat)
+      .join(",");
+    event.getEvar("eVarTransactionProductStockStatus").value =
+      shoppingCartStore.products
+        .map((product) => product.stockStatus)
+        .join(",");
+
+    // send it
+    event.fire();
   }
 }
 
+const openGooglePayWindow = () => {
+  const width = 500;
+  const height = 300;
+  const left = 0;
+  const top = (screen.height - height) / 4;
+
+  const paymentWindow = window.open(
+    "google-pay",
+    "GooglePayWindow",
+    `width=${width},height=${height},left=${left},top=${top},resizable=no`
+  );
+
+  if (!paymentWindow) {
+    alert("Please allow popups.");
+    return;
+  }
+
+  // Optional: listen for postMessage response
+  window.addEventListener("message", (event) => {
+    if (event.origin !== window.location.origin) return;
+    if (event.data.status === "success") {
+      console.log("Payment complete:", event.data);
+      handlePaymentCompleteByGooglePay();
+    }
+  });
+
+  startPaymentByInstatag('google_pay')
+};
+
+const startPayment = () => {
+  if (paymentMethod.value === "BLIK") {
+    isBlikPopupVisible.value = true;
+    startPaymentByInstatag('blik');
+  } else if (paymentMethod.value === "GOOGLE_PAY") {
+    openGooglePayWindow();
+  }
+};
+
 const closeBlikPopup = () => {
-  isBlikPopupVisible.value = false
-}
+  isBlikPopupVisible.value = false;
+};
 </script>
 <style scoped>
 .delivery-and-payment-section {

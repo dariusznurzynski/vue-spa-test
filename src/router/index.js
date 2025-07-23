@@ -22,6 +22,7 @@ import ProductListVueV2 from '@/pages/webshop-v2/ProductList.vue';
 import ProductV2 from '@/pages/webshop-v2/Product.vue'
 import ShoppingCartV2 from '@/pages/webshop-v2/ShoppingCart.vue'
 import CheckoutAndOrderReviewV2 from '@/pages/webshop-v2/CheckoutAndOrderReview.vue'
+import GooglePay from '@/pages/webshop-v2/GooglePay.vue'
  
 const routes = [
   { path: '/', component: Home, name: 'home' },
@@ -114,6 +115,12 @@ const routes = [
         component: CheckoutAndOrderReviewV2,
         name: 'webshop-v2-checkout-and-order-review-v2'
       },
+      {
+        path: 'google-pay',
+        component: GooglePay,
+        name: 'google-pay'
+      },
+      
       // {
       //   path: 'order-review',
       //   component: OrderReview,

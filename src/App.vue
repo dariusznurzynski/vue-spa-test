@@ -1,8 +1,7 @@
 <template>
-  SPA (history mode, clean urls)
-  <br>
-  <br>
-  <nav class="it-vue-navigation">
+  <nav class="it-vue-navigation"
+    v-if="!isNavHidden"
+  >
     <router-link :to="{name: 'home'}">Home</router-link> |
     <router-link :to="{name: 'asset-management'}">Asset Management</router-link> |
     <router-link :to="{name: 'asset-print'}">Asset Print</router-link> |
@@ -13,16 +12,21 @@
     <router-link :to="{name: 'webshop-v2'}">Webshop V2</router-link>
   </nav>
   <br>
-  <b>Page content</b>
+  <b v-if="!isNavHidden">Page content</b>
   <br>
   <br>
   <router-view />
 </template>
 <script setup>
+  import { computed } from 'vue'
 
-
+  const isNavHidden = computed(() => {
+    return window.location.pathname.includes('google-pay')
+  })
 </script>
 
 <style scoped>
-
+  .hidden {
+    display: none;
+  }
 </style>
