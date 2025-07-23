@@ -23,6 +23,7 @@ import ProductV2 from '@/pages/webshop-v2/Product.vue'
 import ShoppingCartV2 from '@/pages/webshop-v2/ShoppingCart.vue'
 import CheckoutAndOrderReviewV2 from '@/pages/webshop-v2/CheckoutAndOrderReview.vue'
 import GooglePay from '@/pages/webshop-v2/GooglePay.vue'
+import OrderConfirmationV2 from '@/pages/webshop-v2/OrderConfirmation.vue'
  
 const routes = [
   { path: '/', component: Home, name: 'home' },
@@ -120,37 +121,21 @@ const routes = [
         component: GooglePay,
         name: 'google-pay'
       },
-      
       // {
       //   path: 'order-review',
       //   component: OrderReview,
       //   name: 'order-review'
       // },
-      // {
-      //   path: 'order-payment',
-      //   component: Payment,
-      //   name: 'order-payment'
-      // },
-      // {
-      //   path: 'payment-complete',
-      //   component: PaymentComplete,
-      //   name: 'payment-complete'
-      // },
-      // {
-      //   path: 'order-confirmation',
-      //   component: OrderConfirmation,
-      //   name: 'order-confirmation'
-      // },
+      {
+        path: 'order-confirmation',
+        component: OrderConfirmationV2,
+        name: 'order-confirmation-v2'
+      },
       {
         path: 'product/:id',
         component: ProductV2,
         name: 'product-v2'
       },
-      // {
-      //   path: 'empty-product-attrs',
-      //   component: EmptyProductAttrs,
-      //   name: 'empty-product-attrs'
-      // }
     ]
   },
 ];

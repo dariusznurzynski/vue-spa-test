@@ -116,7 +116,7 @@ const goToReview = () => {
 };
 
 const handlePaymentCompleteByGooglePay = () => {
-  if (WSC.modules.instatag) {
+  if (window.WSC && window.WSC.modules.instatag) {
     let event = WSC.modules.instatag.createEvent("event92");
 
     // Payment method
@@ -141,7 +141,7 @@ const handlePaymentCompleteByGooglePay = () => {
 };
 
 const startPaymentByInstatag = (paymentType) => {
-    if (WSC.modules.instatag) {
+    if (window.WSC && window.WSC.modules.instatag) {
     let event = WSC.modules.instatag.createEvent("event91");
 
     // Payment method
@@ -188,6 +188,11 @@ const openGooglePayWindow = () => {
     if (event.data.status === "success") {
       console.log("Payment complete:", event.data);
       handlePaymentCompleteByGooglePay();
+      setTimeout(() => {
+        router.push({
+          name: 'order-confirmation-v2'
+        });
+      }, 500)
     }
   });
 

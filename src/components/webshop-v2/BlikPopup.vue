@@ -83,7 +83,9 @@ function submit() {
 }
 
 function navigateToOrderConfirmation() {
-  router.push("/order-confirmation");
+  router.push({
+    name: 'order-confirmation-v2'
+  });
   close();
 }
 
