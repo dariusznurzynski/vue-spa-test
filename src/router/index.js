@@ -24,6 +24,8 @@ import ShoppingCartV2 from '@/pages/webshop-v2/ShoppingCart.vue'
 import CheckoutAndOrderReviewV2 from '@/pages/webshop-v2/CheckoutAndOrderReview.vue'
 import GooglePay from '@/pages/webshop-v2/GooglePay.vue'
 import OrderConfirmationV2 from '@/pages/webshop-v2/OrderConfirmation.vue'
+import ProfileV2 from '@/pages/webshop-v2/Profile.vue'
+import ReturnProductV2 from '@/pages/webshop-v2/ReturnProduct.vue';
  
 const routes = [
   { path: '/', component: Home, name: 'home' },
@@ -87,7 +89,7 @@ const routes = [
         path: 'empty-product-attrs',
         component: EmptyProductAttrs,
         name: 'empty-product-attrs'
-      }
+      },
     ]
   },
   { 
@@ -101,11 +103,11 @@ const routes = [
         component: ProductListVueV2,
         name: 'webshop-v2-home'
       },
-      // {
-      //   path: 'profile',
-      //   component: Profile,
-      //   name: 'webshop-profile'
-      // },
+      {
+        path: 'profile',
+        component: ProfileV2,
+        name: 'profile-v2'
+      },
       {
         path: 'shopping-cart',
         component: ShoppingCartV2,
@@ -121,11 +123,6 @@ const routes = [
         component: GooglePay,
         name: 'google-pay'
       },
-      // {
-      //   path: 'order-review',
-      //   component: OrderReview,
-      //   name: 'order-review'
-      // },
       {
         path: 'order-confirmation',
         component: OrderConfirmationV2,
@@ -136,6 +133,11 @@ const routes = [
         component: ProductV2,
         name: 'product-v2'
       },
+      {
+        path: 'product-return',
+        component: ReturnProductV2,
+        name: 'product-return-v2'
+      }
     ]
   },
 ];

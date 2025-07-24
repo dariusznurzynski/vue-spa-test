@@ -2,32 +2,8 @@
   <nav>
     <h3>Webshop v2</h3>
     <div class="side-left-panel">
-      <!-- <button
-        @click="goToEmptyAttrs"
-      >
-        Empty attrs
-      </button>
-      <button 
-        @click="goToProductList"
-      >
-        Product List
-      </button>
-      <button 
-        @click="changeVisibilityForShoppingCartVshow"
-      >
-        Shopping Cart (v-show)
-      </button>
-      <button 
-        @click="changeVisibilityForShoppingCartVif"
-      >
-        Shopping Cart (v-if)
-      </button>
-      <button 
-        @click="navigateToProfile"
-      >
-        Profile
-      </button> -->
-      <cart-button 
+      <account-button @click="navigateToProfile"/>
+      <cart-button
         @mouseenter="changeVisibilityForShoppingCartVIf(true)"
       />
       <shopping-card-popup
@@ -41,10 +17,11 @@
 <script setup>
   import CartButton from '@/components/webshop-v2/CartButton.vue'
   import { ref } from 'vue'
-  // import { useRouter } from 'vue-router'
+  import { useRouter } from 'vue-router'
   import ShoppingCardPopup from '@/components/webshop-v2/ShoppingCardPopup.vue'
+  import AccountButton from '@/components/webshop-v2/AccountButton.vue'
 
-  // const router = useRouter()
+  const router = useRouter()
 
   const isShoppingCardVisibleVif = ref(false)
 
@@ -52,25 +29,11 @@
     isShoppingCardVisibleVif.value = visibility
   }
 
-  // const hidePopupVif = () => {
-  //   isShoppingCardVisibleVif.value = false
-  // }
-
-  // const hidePopupVshow = () => {
-  //   isShoppingCardVisibleVshow.value = false
-  // }
-
-  // const navigateToProfile = () => {
-  //   router.push({ name: 'webshop-profile' })
-  // }
-
-  // const goToProductList = () => {
-  //   router.push({ name: 'webshop-home'})
-  // }
-
-  // const goToEmptyAttrs = () => {
-  //   router.push({name: 'empty-product-attrs'})
-  // }
+  const navigateToProfile = () => {
+    router.push({
+      name: 'profile-v2'
+    })
+  }
 </script>
 <style scoped>
   nav {
