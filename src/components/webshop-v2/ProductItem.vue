@@ -14,6 +14,7 @@
     <div class="bottom-panel">
       <span class="product-price">{{ product.price}} {{ product.currency }}</span>
       <add-to-cart-button
+        data-it-cart-addition
         @click.stop.prevent="addToCart(product)"
       />
     </div>

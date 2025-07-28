@@ -85,7 +85,7 @@ import { useRouter } from "vue-router";
 import { useShoppingCartStore } from "@/stores/shoppingCartV2";
 import shoppingCartItemSmall from "@/components/webshop-v2/shoppingCartItemSmall.vue";
 import BlikPopup from "@/components/webshop-v2/BlikPopup.vue";
-import { computed, ref } from "vue";
+import { computed, ref, onBeforeUnmount } from "vue";
 
 const router = useRouter();
 const shoppingCartStore = useShoppingCartStore();
@@ -116,6 +116,10 @@ const goToReview = () => {
 };
 
 const handlePaymentCompleteByGooglePay = () => {
+  console.log('products_id', shoppingCartStore.products
+      .map((product) => product.id)
+      .join(","))
+  console.log('product total', productsTotal.value)
   if (window.WSC && window.WSC.modules.instatag) {
     let event = WSC.modules.instatag.createEvent("event92");
 
@@ -139,6 +143,21 @@ const handlePaymentCompleteByGooglePay = () => {
     event.fire();
   }
 };
+
+const messageHandler = (event) => {
+  // upewnij się, że pochodzi z zaufanego źródła
+  if (event.origin !== window.location.origin) return
+
+  const { status } = event.data || {}
+  if (status === 'success') {
+    console.log("[Message] Google Pay success")
+    handlePaymentCompleteByGooglePay()
+
+    setTimeout(() => {
+      router.push({ name: 'order-confirmation-v2' })
+    }, 500)
+  }
+}
 
 const startPaymentByInstatag = (paymentType) => {
     if (window.WSC && window.WSC.modules.instatag) {
@@ -183,18 +202,7 @@ const openGooglePayWindow = () => {
   }
 
   // Optional: listen for postMessage response
-  window.addEventListener("message", (event) => {
-    if (event.origin !== window.location.origin) return;
-    if (event.data.status === "success") {
-      console.log("Payment complete:", event.data);
-      handlePaymentCompleteByGooglePay();
-      setTimeout(() => {
-        router.push({
-          name: 'order-confirmation-v2'
-        });
-      }, 500)
-    }
-  });
+  window.addEventListener("message", messageHandler);
 
   startPaymentByInstatag('google_pay')
 };
@@ -211,6 +219,10 @@ const startPayment = () => {
 const closeBlikPopup = () => {
   isBlikPopupVisible.value = false;
 };
+
+onBeforeUnmount(() => {
+  window.removeEventListener("message", messageHandler)
+})
 </script>
 <style scoped>
 .delivery-and-payment-section {
