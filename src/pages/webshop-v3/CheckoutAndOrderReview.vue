@@ -78,7 +78,7 @@
       </div>
     </div>
   </div>
-  <blik-popup :visible="isBlikPopupVisible" @close="closeBlikPopup" />
+  <blik-popup :visible="isBlikPopupVisible" @close="closeBlikPopup" order-confirmation-page-name="order-confirmation-v3" />
 </template>
 <script setup>
 import { useRouter } from "vue-router";
@@ -155,7 +155,7 @@ const messageHandler = (event) => {
     handlePaymentCompleteByGooglePay();
 
     setTimeout(() => {
-      router.push({ name: "order-confirmation-v2" });
+      router.push({ name: "order-confirmation-v3" });
     }, 500);
   }
 };
@@ -192,7 +192,7 @@ const openGooglePayWindow = () => {
   const top = (screen.height - height) / 4;
 
   const paymentWindow = window.open(
-    "google-pay",
+    "../webshop-v2/google-pay",
     "GooglePayWindow",
     `width=${width},height=${height},left=${left},top=${top},resizable=no`
   );

@@ -172,7 +172,7 @@ const routes = [
       {
         path: 'checkout-and-order-review-together',
         component: CheckoutAndOrderReviewV3,
-        name: 'webshop-v2-checkout-and-order-review-v3'
+        name: 'webshop-checkout-and-order-review-v3'
       },
       // {
       //   path: 'google-pay',

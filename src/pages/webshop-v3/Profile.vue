@@ -76,7 +76,7 @@ const goToReturns = (order) => {
   const productsIds = order.products.map((p) => (p.id))
 
   router.push({
-    name: 'product-return-v2',
+    name: 'product-return-v3',
     query: {
       orderId: order.id,
       productsIds: productsIds.join(',')

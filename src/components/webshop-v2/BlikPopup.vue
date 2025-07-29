@@ -48,6 +48,10 @@ import { useShoppingCartStore } from "@/stores/shoppingCartV2";
 
 const props = defineProps({
   visible: Boolean,
+  orderConfirmationPageName: {
+    type: String,
+    default: 'order-confirmation-v2'
+  }
 });
 
 const emit = defineEmits(["close"]);
@@ -84,13 +88,13 @@ function submit() {
 
 function navigateToOrderConfirmation() {
   router.push({
-    name: 'order-confirmation-v2'
+    name: props.orderConfirmationPageName
   });
   close();
 }
 
 function handlePaymentComplete() {
-  if (WSC.modules.instatag) {
+  if (window.WSC && window.WSC.modules.instatag) {
     let event = WSC.modules.instatag.createEvent("event91");
 
     // Payment method

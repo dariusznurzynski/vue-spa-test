@@ -12,7 +12,7 @@
   </div>
   <router-link
     class="button-link"
-    :to="{ name: 'webshop-v3-checkout-and-order-review-v2' }"
+    :to="{ name: 'webshop-checkout-and-order-review-v3' }"
   >
     Checkout - Order Review - Payment and delivery Address
   </router-link>
