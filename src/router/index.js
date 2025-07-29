@@ -18,14 +18,22 @@ import EmptyProductAttrs from '../pages/webshop/EmptyProductAttrs.vue'
 import CourseStart from '../pages/CourseStart.vue'
 
 import WebshopV2 from '@/pages/WebshopV2.vue'
-import ProductListVueV2 from '@/pages/webshop-v2/ProductList.vue';
+import ProductListVueV2 from '@/pages/webshop-v2/ProductList.vue'
 import ProductV2 from '@/pages/webshop-v2/Product.vue'
 import ShoppingCartV2 from '@/pages/webshop-v2/ShoppingCart.vue'
 import CheckoutAndOrderReviewV2 from '@/pages/webshop-v2/CheckoutAndOrderReview.vue'
 import GooglePay from '@/pages/webshop-v2/GooglePay.vue'
 import OrderConfirmationV2 from '@/pages/webshop-v2/OrderConfirmation.vue'
 import ProfileV2 from '@/pages/webshop-v2/Profile.vue'
-import ReturnProductV2 from '@/pages/webshop-v2/ReturnProduct.vue';
+import ReturnProductV2 from '@/pages/webshop-v2/ReturnProduct.vue'
+
+import WebshopV3 from '@/pages/WebshopV3.vue'
+import ProductListVueV3 from '@/pages/webshop-v3/ProductList.vue'
+import ProductV3 from '@/pages/webshop-v3/Product.vue'
+import ShoppingCartV3 from '@/pages/webshop-v3/ShoppingCart.vue'
+import CheckoutAndOrderReviewV3 from '@/pages/webshop-v3/CheckoutAndOrderReview.vue'
+import ProfileV3 from '@/pages/webshop-v3/Profile.vue'
+import ReturnProductV3 from '@/pages/webshop-v3/ReturnProduct.vue'
  
 const routes = [
   { path: '/', component: Home, name: 'home' },
@@ -137,6 +145,54 @@ const routes = [
         path: 'product-return',
         component: ReturnProductV2,
         name: 'product-return-v2'
+      }
+    ]
+  },
+  { 
+    path: '/webshop-v3',
+    component: WebshopV3,
+    name: 'webshop-v3',
+    redirect: { name: 'webshop-v3-home' },
+    children: [
+      {
+        path: '',
+        component: ProductListVueV3,
+        name: 'webshop-v3-home'
+      },
+      {
+        path: 'profile',
+        component: ProfileV3,
+        name: 'profile-v3'
+      },
+      {
+        path: 'shopping-cart',
+        component: ShoppingCartV3,
+        name: 'shopping-cart-v3'
+      },
+      {
+        path: 'checkout-and-order-review-together',
+        component: CheckoutAndOrderReviewV3,
+        name: 'webshop-v2-checkout-and-order-review-v3'
+      },
+      // {
+      //   path: 'google-pay',
+      //   component: GooglePay,
+      //   name: 'google-pay'
+      // },
+      {
+        path: 'order-confirmation',
+        component: OrderConfirmationV2,
+        name: 'order-confirmation-v3'
+      },
+      {
+        path: 'product/:id',
+        component: ProductV3,
+        name: 'product-v3'
+      },
+      {
+        path: 'product-return',
+        component: ReturnProductV3,
+        name: 'product-return-v3'
       }
     ]
   },
