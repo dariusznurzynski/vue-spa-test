@@ -222,6 +222,7 @@ const closeBlikPopup = () => {
 };
 
 onMounted(() => {
+  console.log('products', shoppingCartStore.products)
   if (window.WSC && window.WSC.modules.instatag) {
     // ES6
     let eventCheckoutView = window.WSC.modules.instatag.createEvent("event38");
@@ -242,7 +243,7 @@ onMounted(() => {
     let eventOrderReview = window.WSC.modules.instatag.createEvent("event39");
 
     // setting values here
-    eventOrderReviewent.getEvar("eVarCartProductId").value =
+    eventOrderReview.getEvar("eVarCartProductId").value =
       shoppingCartStore.products.map((product) => product.id).join(",");
     eventOrderReview.getEvar("eVarCartProductCategory").value =
       shoppingCartStore.products.map((product) => product.cat).join(",");
