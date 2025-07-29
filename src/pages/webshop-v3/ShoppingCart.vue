@@ -29,20 +29,18 @@ const shoppingCartStore = useShoppingCartStore();
 const router = useRouter();
 
 const removeProduct = (product) => {
-  shoppingCartStore.remove(product.value.id);
-
-  shoppingCartStore.remove(product.value.id);
+  shoppingCartStore.remove(product.id);
 
   if (window.WSC && window.WSC.modules.instatag) {
     // ES6
     let event = window.WSC.modules.instatag.createEvent("scRemove");
     // multiple or single porduct ids
-    event.getEvar("eVarCartProductId").value = product.value.id;
+    event.getEvar("eVarCartProductId").value = product.id;
     // category index should equal product index
-    event.getEvar("eVarCartProductCategory").value = product.value.cat;
+    event.getEvar("eVarCartProductCategory").value = product.cat;
     // stock status
     event.getEvar("eVarCartProductStockStatus").value =
-      product.value.stockStatus;
+      product.stockStatus;
 
     // send it
     event.fire();

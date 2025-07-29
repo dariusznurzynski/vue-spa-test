@@ -242,7 +242,7 @@ onMounted(() => {
     let eventOrderReview = window.WSC.modules.instatag.createEvent("event39");
 
     // setting values here
-    eveventOrderReviewent.getEvar("eVarCartProductId").value =
+    eventOrderReviewent.getEvar("eVarCartProductId").value =
       shoppingCartStore.products.map((product) => product.id).join(",");
     eventOrderReview.getEvar("eVarCartProductCategory").value =
       shoppingCartStore.products.map((product) => product.cat).join(",");

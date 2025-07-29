@@ -73,7 +73,7 @@ function requestReturn() {
     let event = window.WSC.modules.instatag.createEvent("event113");
 
     // reason
-    event.getEvar("eVar116").value = reason.value;
+    event.getEvar("eVar116").value = returnReason.value;
     // lot
     event.getEvar("eVar117").value = orderLot;
     // exp date
