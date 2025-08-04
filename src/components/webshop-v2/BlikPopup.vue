@@ -100,7 +100,10 @@ function handlePaymentComplete() {
     // Payment method
     event.getEvar("eVar71").value = "blik";
     // payment amount
-    event.getEvar("eVar111").value = productsTotal.value;
+    event.getEvar("eVar111").value = shoppingCartStore.products.reduce(
+      (sum, product) => sum + product.price * product.quantity,
+      0
+    )
 
     event.getEvar("eVarOrderProductId").value = shoppingCartStore.products
       .map((product) => product.id)
