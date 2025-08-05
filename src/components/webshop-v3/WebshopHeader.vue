@@ -10,6 +10,7 @@
         v-if="isShoppingCardVisibleVif"
         class="shopping-cart-v-if"
         @mouseleave="changeVisibilityForShoppingCartVIf(false)"
+        @close="closeCart"
       />
     </div>
   </nav>
@@ -33,6 +34,10 @@
     router.push({
       name: 'profile-v3'
     })
+  }
+
+  const closeCart = () => {
+    isShoppingCardVisibleVif.value = false
   }
 </script>
 <style scoped>

@@ -10,8 +10,8 @@
       <p v-if="isCartEmpty">Cart is empty</p>
     </div>
     <div class="links" v-if="!isCartEmpty">
-      <router-link class="button-link" :to="{ name: 'shopping-cart-v2'}">View cart</router-link>
-      <router-link class="button-link" :to="{ name: 'webshop-v2-checkout-and-order-review-v2'}" data-it-cart-checkout="">Checkout</router-link>
+      <router-link class="button-link" :to="{ name: 'shopping-cart-v2'}" @click="emit('close')">View cart</router-link>
+      <router-link class="button-link" :to="{ name: 'webshop-v2-checkout-and-order-review-v2'}" @click="emit('close')" data-it-cart-checkout="">Checkout</router-link>
     </div>
   </div>
 </template>
@@ -20,6 +20,8 @@ import { useRouter } from "vue-router"
 import shoppingCartItemSmall from "@/components/webshop-v2/shoppingCartItemSmall.vue"
 import { useShoppingCartStore } from '@/stores/shoppingCartV2'
 import { computed } from 'vue'
+
+  const emit = defineEmits(["close"])
 
   const router = useRouter()
   const shoppingCartStore = useShoppingCartStore()
