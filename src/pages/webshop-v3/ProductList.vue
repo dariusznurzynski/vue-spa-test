@@ -21,7 +21,6 @@ const shoppingCartStore = useShoppingCartStore();
 const router = useRouter();
 
 const addToShoppingCart = (product) => {
-  console.log("adding product");
   shoppingCartStore.add(product);
 
   if (window.WSC && window.WSC.modules.instatag) {

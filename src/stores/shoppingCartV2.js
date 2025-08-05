@@ -6,10 +6,16 @@ export const useShoppingCartStore = defineStore('shoppingCartV2', {
       products: []
     }
   },
+  getters: {
+    total: (state) => {
+      return state.products.reduce(
+        (sum, product) => sum + product.price * product.quantity,
+        0
+      )
+    }
+  },
   actions: {
     add(product, amount = 1) {
-      console.log('add to Cart')
-      console.log(product)
       const index = this.products.findIndex((item) => item.id === product.id)
       if (index === -1) {
         product.quantity = amount
@@ -19,7 +25,6 @@ export const useShoppingCartStore = defineStore('shoppingCartV2', {
         this.products[index].quantity += amount
       }
 
-      console.log('addProduct', this.products)
     },
     remove(id) {
       const index = this.products.findIndex(item => item.id === id)
@@ -38,7 +43,6 @@ export const useShoppingCartStore = defineStore('shoppingCartV2', {
       }
     },
     update(index, data) {
-      console.log('index', index)
       if (index >= 0 && index < this.products.length) {
         Object.assign(this.products[index], data)
       }

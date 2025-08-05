@@ -36,9 +36,9 @@
     <div class="payment">
       <div class="card">
         <h2>Summary</h2>
-        <p><span>Products: </span> {{ productsTotal }} zl</p>
+        <p><span>Products: </span> {{ shoppingCartStore.total }} zl</p>
         <p><span>Delivery: </span> 00,00 zl</p>
-        <p><span>Total: </span> {{ productsTotal }} zl</p>
+        <p><span>Total: </span> {{ shoppingCartStore.total }} zl</p>
         <button class="payment-button" @click="startPayment">
           Pay by {{ paymentMethod }}
         </button>
@@ -94,15 +94,6 @@ const paymentMethod = ref("BLIK");
 
 const isBlikPopupVisible = ref(false);
 
-const productsTotal = computed(() => {
-  let total = 0;
-  shoppingCartStore.products.forEach((product) => {
-    total += product.price * product.quantity;
-  });
-
-  return total;
-});
-
 const goToCart = () => {
   router.push({
     name: "shopping-cart",
@@ -116,17 +107,13 @@ const goToReview = () => {
 };
 
 const handlePaymentCompleteByGooglePay = () => {
-  console.log('products_id', shoppingCartStore.products
-      .map((product) => product.id)
-      .join(","))
-  console.log('product total', productsTotal.value)
   if (window.WSC && window.WSC.modules.instatag) {
     let event = WSC.modules.instatag.createEvent("event92");
 
     // Payment method
     event.getEvar("eVar71").value = "google_pay";
     // payment amount
-    event.getEvar("eVar111").value = productsTotal.value;
+    event.getEvar("eVar111").value = shoppingCartStore.total;
 
     event.getEvar("eVarOrderProductId").value = shoppingCartStore.products
       .map((product) => product.id)
@@ -150,7 +137,6 @@ const messageHandler = (event) => {
 
   const { status } = event.data || {}
   if (status === 'success') {
-    console.log("[Message] Google Pay success")
     handlePaymentCompleteByGooglePay()
 
     setTimeout(() => {
@@ -166,7 +152,7 @@ const startPaymentByInstatag = (paymentType) => {
     // Payment method
     event.getEvar("eVar71").value = paymentType;
     // payment amount
-    event.getEvar("eVar111").value = productsTotal.value;
+    event.getEvar("eVar111").value = shoppingCartStore.total;
 
     event.getEvar("eVarOrderProductId").value = shoppingCartStore.products
       .map((product) => product.id)

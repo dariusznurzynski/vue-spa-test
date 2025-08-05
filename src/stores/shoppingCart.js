@@ -24,7 +24,6 @@ export const useShoppingCartStore = defineStore('shoppingCart', {
       }
     },
     update(index, data) {
-      console.log('index', index)
       if (index >= 0 && index < this.products.length) {
         Object.assign(this.products[index], data)
       }

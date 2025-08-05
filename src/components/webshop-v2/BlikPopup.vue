@@ -61,6 +61,7 @@ const stage = ref("input"); // 'input' | 'loading' | 'accepted'
 const loading = ref(false);
 
 const router = useRouter();
+const shoppingCartStore = useShoppingCartStore()
 
 function close() {
   if (loading.value) return; // prevent close during loading
@@ -100,10 +101,7 @@ function handlePaymentComplete() {
     // Payment method
     event.getEvar("eVar71").value = "blik";
     // payment amount
-    event.getEvar("eVar111").value = shoppingCartStore.products.reduce(
-      (sum, product) => sum + product.price * product.quantity,
-      0
-    )
+    event.getEvar("eVar111").value = shoppingCartStore.total
 
     event.getEvar("eVarOrderProductId").value = shoppingCartStore.products
       .map((product) => product.id)

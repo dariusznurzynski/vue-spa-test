@@ -21,7 +21,6 @@
   const router = useRouter()
 
   const addToShoppingCart = (product) => {
-    console.log('adding product')
     shoppingCartStore.add(product)
   }
 

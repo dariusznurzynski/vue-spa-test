@@ -72,7 +72,6 @@ function statusColor(status) {
 }
 
 const goToReturns = (order) => {
-  console.log(order)
   const productsIds = order.products.map((p) => (p.id))
 
   router.push({

@@ -65,7 +65,6 @@
 
 	const product = ref(null)
 	const hasProduct = ref(true)
-	console.log('test', productsStore.getProductById(productId))
 	product.value = productsStore.getProductById(parseInt(productId))
 
 	const quickChangeOfAttrs = () => {
