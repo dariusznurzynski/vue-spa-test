@@ -96,7 +96,7 @@ function navigateToOrderConfirmation() {
 
 function handlePaymentComplete() {
   if (window.WSC && window.WSC.modules.instatag) {
-    let event = WSC.modules.instatag.createEvent("event91");
+    let event = WSC.modules.instatag.createEvent("event92");
 
     // Payment method
     event.getEvar("eVar71").value = "blik";

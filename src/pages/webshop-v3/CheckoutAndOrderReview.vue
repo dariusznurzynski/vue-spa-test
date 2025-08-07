@@ -206,25 +206,8 @@ const closeBlikPopup = () => {
   isBlikPopupVisible.value = false;
 };
 
-onMounted(() => {
-  if (window.WSC && window.WSC.modules.instatag) {
-    // ES6
-    let eventCheckoutView = window.WSC.modules.instatag.createEvent("event38");
-
-    // setting values here
-    eventCheckoutView.getEvar("eVarCartProductId").value =
-      shoppingCartStore.products.map((product) => product.id).join(",");
-    eventCheckoutView.getEvar("eVarCartProductCategory").value =
-      shoppingCartStore.products.map((product) => product.cat).join(",");
-    eventCheckoutView.getEvar("eVarCartProductStockStatus").value =
-      shoppingCartStore.products
-        .map((product) => product.stockStatus)
-        .join(",");
-
-    // send it
-    eventCheckoutView.fire();
-
-    let eventOrderReview = window.WSC.modules.instatag.createEvent("event39");
+const fireOrderReviewInstatagEvent = () => {
+  let eventOrderReview = window.WSC.modules.instatag.createEvent("event39");
 
     // setting values here
     eventOrderReview.getEvar("eVarCartProductId").value =
@@ -238,7 +221,32 @@ onMounted(() => {
 
     // send it
     eventOrderReview.fire();
-  }
+}
+
+const fireCheckoutPageInstatagEvent = () => {
+  let eventCheckoutView = window.WSC.modules.instatag.createEvent("event38");
+
+    // setting values here
+    eventCheckoutView.getEvar("eVarCartProductId").value =
+      shoppingCartStore.products.map((product) => product.id).join(",");
+    eventCheckoutView.getEvar("eVarCartProductCategory").value =
+      shoppingCartStore.products.map((product) => product.cat).join(",");
+    eventCheckoutView.getEvar("eVarCartProductStockStatus").value =
+      shoppingCartStore.products
+        .map((product) => product.stockStatus)
+        .join(",");
+
+    // send it
+    eventCheckoutView.fire();
+}
+
+onMounted(() => {
+  setTimeout(() => {
+    if (window.WSC && window.WSC.modules.instatag) {
+      fireCheckoutPageInstatagEvent()
+      fireOrderReviewInstatagEvent()
+    }
+  }, 500)
 });
 
 onBeforeUnmount(() => {

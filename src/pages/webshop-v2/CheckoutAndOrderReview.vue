@@ -21,9 +21,9 @@
           Change delivery method
         </button>
       </div>
-      <div class="card">
+      <div class="card" data-it-checkout-page=''>
         <h2>Items</h2>
-        <div class="items-list" data-it-checkout-page='' data-it-review-page=''>
+        <div class="items-list" data-it-review-page=''>
           <shopping-cart-item-small
             v-for="product in shoppingCartStore.products"
             :key="product.id"
